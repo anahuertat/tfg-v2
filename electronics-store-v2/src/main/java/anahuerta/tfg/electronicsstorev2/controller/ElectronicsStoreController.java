@@ -12,16 +12,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import anahuerta.tfg.electronicsstorev2.domain.Cart;
 import anahuerta.tfg.electronicsstorev2.domain.Component;
+import anahuerta.tfg.electronicsstorev2.domain.Order;
+import anahuerta.tfg.electronicsstorev2.domain.User;
 import anahuerta.tfg.electronicsstorev2.service.ElectronicsStoreService;
+import ch.qos.logback.core.net.LoginAuthenticator;
 
 @RestController
 @RequestMapping("/store")
 public class ElectronicsStoreController {
 	private final ElectronicsStoreService storeService;
+	private User user;
 	
 	@Autowired
 	public ElectronicsStoreController(final ElectronicsStoreService storeService) {
 		this.storeService = storeService;
+	}
+	
+	@PostMapping("/login")
+	public boolean login(@RequestBody String email, String password) {
+		user = storeService.login(email, password);
+		if(user!=null)
+			return true;
+		return false;
 	}
 	
 	@GetMapping("/cart")
@@ -32,8 +44,8 @@ public class ElectronicsStoreController {
 	
 	//@PostMapping(path = "/purchase", consumes = "application/json", produces = "application/json")
 	@PostMapping("/purchase")
-	public boolean addToCart(@RequestBody Integer reference, int quantity) {
-	    return storeService.addToCart(reference, quantity);
+	public boolean addToCart(@RequestBody Integer reference) {
+	    return storeService.addToCart(reference);
 	}
 	
 	@PostMapping("/checkout")
@@ -43,7 +55,8 @@ public class ElectronicsStoreController {
 	
 	@PatchMapping("/checkout/confirmation")
 	public void confirm() {
-		storeService.confirm();
+		Order order = new Order(user.getAddress(), user);
+		storeService.confirm(order);
 	}
 	
 }

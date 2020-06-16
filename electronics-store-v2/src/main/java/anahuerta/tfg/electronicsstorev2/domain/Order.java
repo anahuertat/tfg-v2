@@ -2,7 +2,6 @@ package anahuerta.tfg.electronicsstorev2.domain;
 
 import java.sql.Timestamp;
 
-
 public class Order {
 	public Integer order_number;
 	public String address;
@@ -16,9 +15,8 @@ public class Order {
 		this.user = user;
 	}
 	
-	public Order(String address, Timestamp order_date, User user) {
+	public Order(String address, User user) {
 		this.address = address;
-		this.order_date = order_date;
 		this.user = user;
 	}
 	

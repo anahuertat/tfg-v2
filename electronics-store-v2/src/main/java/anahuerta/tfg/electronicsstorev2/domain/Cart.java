@@ -1,42 +1,37 @@
 package anahuerta.tfg.electronicsstorev2.domain;
 
 import java.util.List;
+
+import anahuerta.tfg.electronicsstorev2.persistence.StoreDataBase;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Cart {
 	List<Component> cartItems = new ArrayList<Component>();
-    
-    public void addToCartByRef(Integer reference, int quantity) {
-        Component component = getComponentByRef(reference);
-        addToCart(component, quantity);
-    }
 
-    private Component getComponentByRef(Integer reference) {
-        Component component = null;
-        //List<Component> components = new Components().getComponents();
-        /*for (Component c: components) {
-            if (c.getReference() == reference) {
-                component = c;
-                break;
-            }
-        }*/
-        return component;
-    }
-
-    private void addToCart(Component component, int quantity) {
-    		for(int i=0; i<quantity; i++) {
-    			cartItems.add(component);
-    		}
+    public void addToCart(Component component) {
+    		cartItems.add(component);
     }
 
     public void removeComponentByRef(Integer reference) {
-        Component c = getComponentByRef(reference);
-        cartItems.remove(c);
+    		List<Component> aux = cartItems; //we make a copy of cartItems so we can delete while iterating
+        Iterator<Component> iterator = cartItems.iterator();
+        while(iterator.hasNext()) {
+        		Component c = iterator.next();
+        		if(c.getReference().equals(reference)) {
+        			aux.remove(c);
+        		}
+        }
+        cartItems.clear();
+        cartItems.addAll(aux); //we update cartItems
     }
 
     public void printCartItems() {
         for (Component c: cartItems) {
-            System.out.println(c.getName());
+        		if(c != null) {
+        			System.out.println(c.getReference() +" : "+ c.getName());
+        		}
         }
     }
     

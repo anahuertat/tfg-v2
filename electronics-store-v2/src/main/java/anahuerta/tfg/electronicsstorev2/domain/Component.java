@@ -3,13 +3,13 @@ package anahuerta.tfg.electronicsstorev2.domain;
 import java.util.Objects;
 
 public class Component{
-	public Category category;
+	public String category;
 	public String name;
 	public Double price;
 	public Integer reference;
 	public Integer stock;
 	
-	public Component(Category category, String name, Double price, Integer reference, Integer stock) {
+	public Component(String category, String name, Double price, Integer reference, Integer stock) {
 		this.category = category;
 		this.name = name;
 		this.price = price;
@@ -17,7 +17,7 @@ public class Component{
 		this.stock = stock;
 	}
 	
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 	
