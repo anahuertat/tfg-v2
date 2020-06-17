@@ -48,6 +48,11 @@ public class ElectronicsStoreController {
 	    return storeService.addToCart(reference);
 	}
 	
+	@PatchMapping("/remove")
+	public boolean removeFromCart(@RequestBody Integer reference) {
+	    return storeService.removeFromCart(reference);
+	}
+	
 	@PostMapping("/checkout")
 	public Cart checkout(){
 		return storeService.checkout();

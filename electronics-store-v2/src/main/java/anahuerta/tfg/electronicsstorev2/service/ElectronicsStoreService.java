@@ -18,4 +18,6 @@ public interface ElectronicsStoreService {
 	void confirm(Order order);
 
 	User login(String email, String password);
+
+	boolean removeFromCart(Integer reference);
 }

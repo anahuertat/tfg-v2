@@ -54,4 +54,9 @@ public class ElectronicsStoreServiceImpl implements ElectronicsStoreService{
 		return storeDB.login(email, password);
 	}
 
+	@Override
+	public boolean removeFromCart(Integer reference) {
+		return cart.removeComponentByRef(reference);
+	}
+
 }

@@ -2,8 +2,6 @@ package anahuerta.tfg.electronicsstorev2.domain;
 
 import java.util.List;
 
-import anahuerta.tfg.electronicsstorev2.persistence.StoreDataBase;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -14,17 +12,20 @@ public class Cart {
     		cartItems.add(component);
     }
 
-    public void removeComponentByRef(Integer reference) {
-    		List<Component> aux = cartItems; //we make a copy of cartItems so we can delete while iterating
-        Iterator<Component> iterator = cartItems.iterator();
-        while(iterator.hasNext()) {
-        		Component c = iterator.next();
-        		if(c.getReference().equals(reference)) {
-        			aux.remove(c);
-        		}
-        }
-        cartItems.clear();
-        cartItems.addAll(aux); //we update cartItems
+    public boolean removeComponentByRef(Integer reference) {
+    		if(cartItems.isEmpty()) {
+			return false;
+		}else{
+			Iterator<Component> it = cartItems.iterator();
+			while(it.hasNext()) {
+				Component component = it.next();
+				if(component.getReference().equals(reference)) {
+					cartItems.remove(component);
+					return true;
+				}
+			}
+		}
+    		return false;
     }
 
     public void printCartItems() {
@@ -37,5 +38,18 @@ public class Cart {
     
     public List<Component> getCartItems() {
     		return cartItems;
+    }
+    
+    public boolean containsByRef(Integer reference) {
+    		if(cartItems.isEmpty()) {
+    			return false;
+    		}else {
+    			Iterator<Component> it = cartItems.iterator();
+    			while(it.hasNext()) {
+    				if(it.next().getReference().equals(reference))
+    					return true;
+    			}
+    		}
+    		return false;
     }
 }
