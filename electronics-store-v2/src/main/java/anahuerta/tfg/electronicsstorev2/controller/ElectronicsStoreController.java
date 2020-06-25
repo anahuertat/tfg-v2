@@ -15,7 +15,6 @@ import anahuerta.tfg.electronicsstorev2.domain.Component;
 import anahuerta.tfg.electronicsstorev2.domain.Order;
 import anahuerta.tfg.electronicsstorev2.domain.User;
 import anahuerta.tfg.electronicsstorev2.service.ElectronicsStoreService;
-import ch.qos.logback.core.net.LoginAuthenticator;
 
 @RestController
 @RequestMapping("/store")

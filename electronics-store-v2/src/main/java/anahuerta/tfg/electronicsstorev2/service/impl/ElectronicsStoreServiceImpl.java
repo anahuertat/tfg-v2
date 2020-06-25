@@ -1,4 +1,5 @@
 package anahuerta.tfg.electronicsstorev2.service.impl;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,8 +10,6 @@ import anahuerta.tfg.electronicsstorev2.domain.Order;
 import anahuerta.tfg.electronicsstorev2.domain.User;
 import anahuerta.tfg.electronicsstorev2.persistence.StoreDataBase;
 import anahuerta.tfg.electronicsstorev2.service.ElectronicsStoreService;
-
-
 
 @Service
 public class ElectronicsStoreServiceImpl implements ElectronicsStoreService{
