@@ -2,7 +2,6 @@ package anahuerta.tfg.electronicsstorev2.persistence;
 
 import java.sql.*;
 
-import anahuerta.tfg.electronicsstorev2.domain.Category;
 import anahuerta.tfg.electronicsstorev2.domain.Component;
 import anahuerta.tfg.electronicsstorev2.domain.Order;
 import anahuerta.tfg.electronicsstorev2.domain.User;
